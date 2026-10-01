@@ -13,7 +13,7 @@ Make this Laravel application deployable as a serverless PHP application on Verc
 
 ## Implementation approach
 
-Vercel uses the community `vercel-php` runtime for `api/index.php`. The project keeps Laravel's normal `public/index.php` and adds only a thin adapter under `api/`. `vercel.json` installs Composer and pnpm dependencies, builds frontend assets, serves known static files, and forwards the remaining requests to Laravel.
+Vercel uses the community `vercel-php` runtime for `api/index.php`. The project keeps Laravel's normal `public/index.php` and adds only a thin adapter under `api/`. `vercel.json` installs frontend dependencies with pnpm, builds frontend assets, serves known static files, and forwards the remaining requests to Laravel. The `vercel-php` runtime detects `composer.json` and installs PHP dependencies while preparing the function; Composer must not be called from Vercel's Node build install command because that build environment does not provide a `composer` executable.
 
 ## Required production configuration
 
